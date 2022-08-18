@@ -20,6 +20,12 @@ func readFile(fPath string) (r *bufio.Reader, closeFn func() error, err error) {
 }
 
 func main() {
+	flag.Usage = func() {
+		_, _ = fmt.Fprintf(flag.CommandLine.Output(), "Usage of %s:\n\n", os.Args[0])
+		_, _ = fmt.Fprintf(flag.CommandLine.Output(), "When no arguments are given %s reads from the standard in.\n", os.Args[0])
+		flag.PrintDefaults()
+	}
+
 	var fPath string
 	flag.StringVar(&fPath, "f", "", "path to the file to process")
 	flag.Parse()
