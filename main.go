@@ -1,3 +1,6 @@
+// Unique is a command-line utility which ingests string values and outputs the unique ones.
+// This is achieved by keeping track of the encountered values, which means that the consumed memory will grow with
+// incoming unique values.
 package main
 
 import (
@@ -7,16 +10,39 @@ import (
 	"io"
 	"log"
 	"os"
+
+	"github.com/cespare/xxhash"
 )
 
-// readFile opens the given file for reading and returns a reader and a closing
-// function.
+// readFile opens the given file for reading and returns a reader and a closing function.
 func readFile(fPath string) (r *bufio.Reader, closeFn func() error, err error) {
 	file, err := os.Open(fPath)
 	if err != nil {
 		return nil, nil, err
 	}
 	return bufio.NewReader(file), file.Close, nil
+}
+
+// outputUnique reads from the provided reader and outputs all unique lines.
+func outputUnique(r *bufio.Reader) {
+	// This map will hold the hashes of unique lines.
+	m := make(map[uint64]struct{})
+
+	var line []byte
+	var err error
+	var hash uint64
+	for {
+		line, _, err = r.ReadLine()
+		if err == io.EOF {
+			break
+		}
+		hash = xxhash.Sum64(line)
+		// If it's not already in the map, we'll add it and output it.
+		if _, ok := m[hash]; !ok {
+			m[hash] = struct{}{}
+			fmt.Println(string(line))
+		}
+	}
 }
 
 func main() {
@@ -34,26 +60,13 @@ func main() {
 	if fPath != "" {
 		r, closeFn, err := readFile(fPath)
 		if err != nil {
-			log.Fatalf("Failed to read from file '%s'. Error: %s\n", err.Error())
+			log.Fatalf("Failed to read from file '%s'. Error: %s\n", fPath, err.Error())
 		}
 		reader = r
-		defer closeFn()
+		defer func() { _ = closeFn() }()
 	} else {
 		reader = bufio.NewReader(os.Stdin)
 	}
 
-	// This map will hold the unique lines
-	m := make(map[string]struct{})
-
-	for {
-		line, _, err := reader.ReadLine()
-		if err == io.EOF {
-			break
-		}
-		// If it's not already in the map we'll output it and add it.
-		if _, ok := m[string(line)]; !ok {
-			m[string(line)] = struct{}{}
-			fmt.Println(string(line))
-		}
-	}
+	outputUnique(reader)
 }
