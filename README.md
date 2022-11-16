@@ -10,7 +10,7 @@ The reason this exists is that I need it. If it's useful to you as well - awesom
 ## Installation
 
 If you have [go](https://go.dev/) installed:  
-`$ go install github.com/ro-tex/unique`
+`$ go install github.com/ro-tex/unique@latest`
 
 If you prefer a binary, you can download a Linux amd64 one from https://github.com/ro-tex/unique/releases.
 
