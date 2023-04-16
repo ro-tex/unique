@@ -41,3 +41,17 @@ That is equivalent to
 ```shell
 cat file.dat | unique
 ```
+
+## Development
+
+To run locally, run:
+
+```shell
+go run main.go <ARGS>
+```
+
+To install the local changes:
+
+```shell
+go install
+```
