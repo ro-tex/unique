@@ -1,0 +1,51 @@
+before:
+    hooks:
+        - go mod tidy
+builds:
+    -   binary: unique
+        env:
+            - CGO_ENABLED=0
+        goos:
+            - linux
+            - darwin
+snapshot:
+    name_template: "{{ incpatch .Version }}-next"
+changelog:
+    sort: asc
+    filters:
+        exclude:
+            - '^docs:'
+            - '^test:'
+
+brews:
+    -   name: unique
+        alternative_names:
+            - unique@{{ .Version }}
+            - unique@{{ .Major }}.{{ .Minor }}
+            - unique@{{ .Major }}
+        description: "unique is a simple tool that outputs the unique lines of its input"
+        homepage: "https://github.com/ro-tex/unique"
+        license: "MIT"
+        folder: Formula
+        download_strategy: CurlDownloadStrategy
+        url_template: "https://github.com/ro-tex/unique/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+        commit_author:
+            name: goreleaserbot
+            email: bot@goreleaser.com
+        commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+        dependencies:
+            -   name: go
+        repository:
+            owner: ro-tex
+            name: homebrew-tap
+            branch: main
+            token: "{{ .Env.GITHUB_PERSONAL_AUTH_TOKEN }}"
+            git:
+                url: 'https://github.com/ro-tex/homebrew-tap.git'
+                private_key: '/Users/inovakov/.ssh/id_ed25519'
+                ssh_command: 'ssh -i /Users/inovakov/.ssh/id_ed25519 -o SomeOption=yes'
+
+# The lines beneath this are called `modelines`. See `:help modeline`
+# Feel free to remove those if you don't want/use them.
+# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
