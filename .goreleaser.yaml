@@ -33,8 +33,6 @@ brews:
             name: goreleaserbot
             email: bot@goreleaser.com
         commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
-        dependencies:
-            -   name: go
         repository:
             owner: ro-tex
             name: homebrew-tap
@@ -44,8 +42,3 @@ brews:
                 url: 'https://github.com/ro-tex/homebrew-tap.git'
                 private_key: '/Users/inovakov/.ssh/id_ed25519'
                 ssh_command: 'ssh -i /Users/inovakov/.ssh/id_ed25519 -o SomeOption=yes'
-
-# The lines beneath this are called `modelines`. See `:help modeline`
-# Feel free to remove those if you don't want/use them.
-# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
-# vim: set ts=2 sw=2 tw=0 fo=cnqoj
