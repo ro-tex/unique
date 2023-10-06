@@ -1,18 +1,25 @@
 # unique
 
-`unique` is a simple tool that outputs the unique lines of its input. That input can come from `stdin` or from a file.
+`unique` is a simple tool that outputs the unique lines of its input.
+
+The input can come from `stdin` or from a file. See [usage](#usage).
 
 ## Installation
 
-### Use [Homebrew](https://brew.sh/):
+### Use [Homebrew](https://brew.sh/)
 
 ```shell
 brew install ro-tex/tap/unique
 ```
 
-Or `brew tap ro-tex/tap` and then `brew install unique`.
+or
 
-### Build it yourself:
+```
+brew tap ro-tex/tap
+brew install unique
+```
+
+### Build it yourself
 
 You will need [Go](https://go.dev/) for this.
 
@@ -20,13 +27,13 @@ You will need [Go](https://go.dev/) for this.
 go install github.com/ro-tex/unique@latest
 ```
 
-### Grab a binary:
+### Grab a binary
 
 If you prefer a binary, you can download a Linux or Mac one from https://github.com/ro-tex/unique/releases.
 
 ## Usage
 
-When no arguments are given, `unique` reads from the standard in.
+When no arguments are given, `unique` reads from the standard input.
 Running
 
 ```shell
