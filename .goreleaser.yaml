@@ -23,11 +23,10 @@ brews:
             - unique@{{ .Version }}
             - unique@{{ .Major }}.{{ .Minor }}
             - unique@{{ .Major }}
-        description: "unique is a simple tool that outputs the unique lines of its input"
+        description: "Outputs the unique lines of its input"
         homepage: "https://github.com/ro-tex/unique"
         license: "MIT"
         folder: Formula
-        download_strategy: CurlDownloadStrategy
         url_template: "https://github.com/ro-tex/unique/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
         commit_author:
             name: goreleaserbot
