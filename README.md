@@ -1,22 +1,32 @@
 # unique
 
-`unique` is simple tool that outputs the unique lines of its input. That input can come from `stdin` or from a file.
-
-The reason `unique` exists is that I need it. If it's useful to you as well - awesome!
+`unique` is a simple tool that outputs the unique lines of its input. That input can come from `stdin` or from a file.
 
 ## Installation
 
-If you have [Go](https://go.dev/) installed:
+### Use [Homebrew](https://brew.sh/):
+
+```shell
+brew install ro-tex/tap/unique
+```
+
+Or `brew tap ro-tex/tap` and then `brew install unique`.
+
+### Build it yourself:
+
+You will need [Go](https://go.dev/) for this.
 
 ```shell
 go install github.com/ro-tex/unique@latest
 ```
 
-If you prefer a binary, you can download a Linux amd64 one from https://github.com/ro-tex/unique/releases.
+### Grab a binary:
+
+If you prefer a binary, you can download a Linux or Mac one from https://github.com/ro-tex/unique/releases.
 
 ## Usage
 
-When no arguments are given, `unique` reads from the standard in.  
+When no arguments are given, `unique` reads from the standard in.
 Running
 
 ```shell
@@ -40,18 +50,4 @@ That is equivalent to
 
 ```shell
 cat file.dat | unique
-```
-
-## Development
-
-To run locally, run:
-
-```shell
-go run main.go <ARGS>
-```
-
-To install the local changes:
-
-```shell
-go install
 ```
