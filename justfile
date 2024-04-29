@@ -1,9 +1,9 @@
 # https://github.com/casey/just
 
 build:
-	goreleaser build --clean
+	goreleaser build --clean --snapshot
 
-build version commitHash:
+buildWithVersion version commitHash:
 	go build -ldflags "-X main.version={{version}} -X main.commit={{commitHash}}" .
 
 release version:
