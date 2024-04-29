@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Switched to using v2 of xxhash library.
 
+## [0.0.5] - 2023-10-06
+
+### Added
+
+- Homebrew support (`brew install ro-tex/tap/unique`).
+- Using GoReleaser.
+
 ## [0.0.4] - 2023-05-11
 
 ### Added
