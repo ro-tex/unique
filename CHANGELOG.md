@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `--version` command that outputs version and commit hash.
+
 ### Changed
 
 - Switched to using v2 of xxhash library.
