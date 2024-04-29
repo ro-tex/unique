@@ -22,6 +22,12 @@ const (
 	defaultLineLengthLimit = 100 * 1024 * 1024 // 100 MiB
 )
 
+var (
+	// These variables are set at build time by GoReleaser. See https://goreleaser.com/cookbooks/using-main.version/
+	version = "dev"
+	commit  = "none"
+)
+
 // readFile opens the given file for reading and returns a reader and a closing function.
 func readFile(path string, lineLimit int) (r *bufio.Reader, closeFn func() error, err error) {
 	if path == "" {
@@ -104,10 +110,18 @@ func main() {
 	var filePath string
 	var trim bool
 	var lineLengthLimit int
+	var versionFlag bool
 	flag.StringVar(&filePath, "f", "", "path to the file to process")
 	flag.BoolVar(&trim, "t", false, "trim whitespace from each line (default false)")
 	flag.IntVar(&lineLengthLimit, "ll", defaultLineLengthLimit, "limit the length of each line being processed, ignoring any data beyond that length (values under 16 are ignored)")
+	flag.BoolVar(&versionFlag, "version", false, "print the version")
 	flag.Parse()
+
+	// Print the version and exit.
+	if versionFlag {
+		fmt.Println(version, commit)
+		return
+	}
 
 	reader, closeFn, err := readFile(filePath, lineLengthLimit)
 	if err != nil {
