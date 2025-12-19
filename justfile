@@ -15,3 +15,9 @@ release version:
 
 sign-last-commit:
 	git commit --amend --no-edit -S
+
+changeset:
+	npx changeset
+
+hash:
+	git rev-parse --short HEAD

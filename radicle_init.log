@@ -1,0 +1,21 @@
+inovakov unique % rad init                                                                                                                                                      35ms
+
+Initializing radicle 👾 repository in /Users/inovakov/source/unique..
+
+✓ Name unique
+✓ Description Reads a file and outputs all unique lines.
+✓ Default branch main
+✓ Visibility public
+✓ Repository unique created.
+
+Your Repository ID (RID) is rad:z4MMHetnbTkfuZtc5jMapMavrmQth.
+You can show it any time by running `rad .` from this directory.
+
+✓ Repository successfully synced to 1 node(s).
+
+Your repository has been synced to the network and is now discoverable by peers.
+View it in your browser at:
+
+    https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z4MMHetnbTkfuZtc5jMapMavrmQth
+
+To push changes, run `git push rad main`.
