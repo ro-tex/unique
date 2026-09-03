@@ -39,6 +39,6 @@ homebrew_casks:
             branch: main
             token: "{{ .Env.GITHUB_PERSONAL_AUTH_TOKEN }}"
             git:
-                url: 'https://github.com/ro-tex/homebrew-tap.git'
+                url: 'git@github.com:ro-tex/homebrew-tap.git'
                 private_key: '/Users/inovakov/.ssh/id_ed25519'
-                ssh_command: 'ssh -i /Users/inovakov/.ssh/id_ed25519 -o SomeOption=yes'
+                ssh_command: 'ssh -i {{ .KeyPath }} -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new'
