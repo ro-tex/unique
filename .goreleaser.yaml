@@ -19,14 +19,10 @@ changelog:
 
 brews:
     -   name: unique
-        alternative_names:
-            - unique@{{ .Version }}
-            - unique@{{ .Major }}.{{ .Minor }}
-            - unique@{{ .Major }}
         description: "Outputs the unique lines of its input"
         homepage: "https://github.com/ro-tex/unique"
         license: "MIT"
-        folder: Formula
+        directory: Formula
         url_template: "https://github.com/ro-tex/unique/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
         commit_author:
             name: goreleaserbot
