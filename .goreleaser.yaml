@@ -26,9 +26,21 @@ homebrew_casks:
         description: "Outputs the unique lines of its input"
         homepage: "https://github.com/ro-tex/unique"
         directory: Casks
+        skip_upload: auto
+        # GoReleaser can only write the deprecated `postflight` stanza, so add
+        # `postflight_steps` by hand. It lands at the top of the cask, which
+        # `brew style` flags as Cask/StanzaOrder. Switch to
+        # `hooks.post.install_steps` once goreleaser/goreleaser#6873 ships.
+        custom_block: |
+            postflight_steps do
+              on_macos do
+                # The binary is not signed, so remove the quarantine attribute
+                # to keep macOS Gatekeeper from blocking it.
+                run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{ "{{" }}staged_path}}/unique"]
+              end
+            end
         url:
             template: "https://github.com/ro-tex/unique/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
-            verified: "github.com/ro-tex/unique/"
         commit_author:
             name: goreleaserbot
             email: bot@goreleaser.com
@@ -37,8 +49,7 @@ homebrew_casks:
             owner: ro-tex
             name: homebrew-tap
             branch: main
-            token: "{{ .Env.GITHUB_PERSONAL_AUTH_TOKEN }}"
             git:
                 url: 'git@github.com:ro-tex/homebrew-tap.git'
-                private_key: '/Users/inovakov/.ssh/id_ed25519'
+                private_key: '{{ envOrDefault "HOMEBREW_TAP_SSH_KEY" "" }}'
                 ssh_command: 'ssh -i {{ .KeyPath }} -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new'
